@@ -1,0 +1,56 @@
+*,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: "Baloo Tammudu 2", cursive;
+  color: #333;
+}
+body {
+  width: 100%;
+  background: #fff;
+}
+main {
+  display: flex;
+  padding: 30px;
+  width: 750px;
+  background: rgb(242, 246, 246);
+}
+section {
+  flex: 1;
+}
+section:not(:last-child) {
+  margin-right: 30px;
+}
+h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  user-select: none;
+}
+.item-input {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #333;
+}
+.dropzone {
+  height: 10px;
+  transition: background 0.2s, height 0.2s;
+}
+.dropzone-active {
+  height: 20px;
+  background: #d4b9b9;
+}
+button {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  background: rgb(216, 224, 224);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
