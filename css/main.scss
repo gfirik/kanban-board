@@ -10,16 +10,27 @@ body {
 }
 body {
   width: 100%;
-  background: #fff;
+  background: rgb(231, 236, 236);
+}
+nav {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
 }
 main {
   display: flex;
   padding: 30px;
-  width: 750px;
-  background: rgb(242, 246, 246);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 section {
   flex: 1;
+  background: rgb(220, 233, 233);
+  padding: 30px;
 }
 section:not(:last-child) {
   margin-right: 30px;
@@ -28,14 +39,25 @@ h2 {
   margin-bottom: 20px;
   font-size: 30px;
   user-select: none;
+  font-weight: 800;
+}
+.item {
+  border: 1px solid #333;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: rgb(255, 255, 255);
+}
+.item-title {
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: 700;
 }
 .item-input {
   padding: 10px 15px;
   box-sizing: border-box;
-  background: rgb(255, 255, 255);
   border-radius: 5px;
   cursor: pointer;
-  border: 1px solid #333;
 }
 .dropzone {
   height: 10px;
@@ -49,8 +71,12 @@ button {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
-  background: rgb(216, 224, 224);
+  background: rgb(220, 233, 233);
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  }
 }

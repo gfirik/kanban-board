@@ -14,18 +14,53 @@ export default class KanbanAPI {
       title,
       content,
     };
-
     if (!column) {
       throw new Error("Column not found");
     }
     column.items.push(item);
     save(data);
-
     return item;
   }
   static updateItem(itemId, newProps) {
     const data = read();
-    const [item, currentColumn] = (() => {})();
+    const [item, currentColumn] = (() => {
+      for (const column of data) {
+        const item = column.items.find((item) => item.id == itemId);
+        if (item) {
+          return [item, column];
+        }
+      }
+    })();
+    if (!item) {
+      throw new Error("Item not found");
+    }
+    item.title = newProps.title === undefined ? item.title : newProps.title;
+    item.content =
+      newProps.content === undefined ? item.content : newProps.content;
+    // Update column and position
+    if (newProps.columnId !== undefined && newProps.position !== undefined) {
+      const targetColumn = data.find(
+        (column) => column.id == newProps.columnId
+      );
+      if (!targetColumn) {
+        throw new Error("Target column not found");
+      }
+      // Delete item from current column
+      currentColumn.items.splice(currentColumn.items.indexOf(item), 1);
+      //Move item to target column
+      targetColumn.items.splice(newProps.position, 0, item);
+    }
+    save(data);
+  }
+  static deleteItem(itemId) {
+    const data = read();
+    for (const column of data) {
+      const item = column.items.find((item) => item.id == itemId);
+      if (item) {
+        column.items.splice(column.items.indexOf(item), 1);
+      }
+    }
+    save(data);
   }
 }
 function generateId() {
@@ -37,17 +72,14 @@ function read() {
     return [
       {
         id: 1,
-        title: "",
         items: [],
       },
       {
         id: 2,
-        title: "",
         items: [],
       },
       {
         id: 3,
-        title: "",
         items: [],
       },
     ];
