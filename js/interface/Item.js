@@ -1,7 +1,9 @@
 import KanbanAPI from "../api/KanbanAPI.js";
+import DropZone from "./DropZone.js";
 
 export default class Item {
   constructor(id, title, content) {
+    const bottomDropZone = DropZone.createDropZone();
     this.elements = {};
     this.elements.root = Item.createRoot();
     this.elements.input = this.elements.root.querySelector(".item-input");
@@ -11,7 +13,7 @@ export default class Item {
     this.content = content;
     this.elements.titleInput.textContent = title;
     this.title = title;
-
+    this.elements.root.appendChild(bottomDropZone);
     const onBlurTitle = () => {
       const newTitle = this.elements.titleInput.textContent.trim();
       if (newTitle == this.title) {
@@ -42,6 +44,18 @@ export default class Item {
         this.elements.titleInput.removeEventListener("blur", onBlurTitle);
         this.elements.root.parentElement.removeChild(this.elements.root);
       }
+    });
+    this.elements.root.addEventListener("dragstart", (event) => {
+      event.dataTransfer.setData("text/plain", id);
+    });
+    this.elements.input.addEventListener("drop", (event) => {
+      event.preventDefault();
+    });
+    this.elements.titleInput.addEventListener("drop", (event) => {
+      event.preventDefault();
+    });
+    this.elements.input.addEventListener("onClick", () => {
+      this.elements.input.textContent = "";
     });
   }
   static createRoot() {
