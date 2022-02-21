@@ -23,6 +23,24 @@
       <h1>Task Manager</h1>
     </nav>
     <main></main>
+    <footer>
+      <p>
+        <a
+          href="https://github.com/gfirik"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          gfirik
+        </a>
+        &copy;
+        <span id="year"></span>
+      </p>
+    </footer>
     <script src="js/main.js" type="module"></script>
+    <script>
+      var d = new Date();
+      var n = d.getFullYear();
+      document.getElementById("year").innerHTML = n;
+    </script>
   </body>
 </html>

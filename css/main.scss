@@ -139,6 +139,13 @@ button:not(.delete-item) {
     background: $darkBlue;
   }
 }
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  color: $white;
+}
 ::-webkit-scrollbar {
   width: 10px;
   background: $grey;
