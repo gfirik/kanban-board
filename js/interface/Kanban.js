@@ -12,15 +12,15 @@ export default class Kanban {
     return [
       {
         id: 1,
-        title: "백로그",
+        title: "Not started",
       },
       {
         id: 2,
-        title: "진행중",
+        title: "In progress",
       },
       {
         id: 3,
-        title: "완료 ",
+        title: "Completed",
       },
     ];
   }

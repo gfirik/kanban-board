@@ -1,27 +1,49 @@
+$black: #111215;
+$brown: #433431;
+$darkBlue: #242c4f;
+$grey: #49494f;
+$lightBlue: #2250e4;
+$purple: #777cb2;
+$blue: #2947b4;
+$white: #fafafa;
 *,
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
   font-family: "Baloo Tammudu 2", cursive;
-  color: #333;
+  color: #fff;
 }
 body {
   width: 100%;
-  background: rgb(231, 236, 236);
+  background: $black;
+}
+nav {
+  width: 100%;
+  height: 60px;
+  background: $grey;
+  display: grid;
+  place-items: center;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $white;
 }
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 section {
   flex: 1;
-  background: rgb(220, 233, 233);
+  background: $grey;
   padding: 30px;
+  border-radius: 10px;
+  width: 350px;
 }
 section:not(:last-child) {
   margin-right: 30px;
@@ -33,50 +55,113 @@ h2 {
   font-weight: 800;
 }
 .item {
-  border: 1px solid #333;
   margin-bottom: 20px;
+  transition: all 0.3s;
+  line-height: 1.5;
   border-radius: 10px;
-  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+}
+.item:hover {
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.item-header:hover {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 .item-title {
+  flex: 5;
   padding: 10px;
   box-sizing: border-box;
   font-size: 24px;
+  color: $white;
   font-weight: 700;
+}
+.item-title:focus {
+  outline: none;
+}
+.delete-item {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+.delete-item i {
+  color: $purple;
+  transition: all 0.3s;
+  font-size: 32px;
+}
+.delete-item:hover i {
+  color: $darkBlue;
 }
 .item-input {
   padding: 15px;
   box-sizing: border-box;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
-  height: 100%;
+  font-size: 18px;
+  color: $white;
+  margin-top: 10px;
+}
+.item-input:focus {
+  outline: none;
 }
 .dropzone {
   height: 20px;
+  border-radius: 5px 5px 0 0;
   transition: background 0.2s, height 0.2s;
 }
 .dropzone-active {
   height: 40px;
   background: rgba(10, 10, 10, 0.25);
 }
-button {
+button:not(.delete-item) {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  background: rgb(220, 233, 233);
+  height: 40px;
+  font-size: 18px;
+  padding-top: 8px;
+  background: $purple;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.2s;
   &:hover {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    background: $darkBlue;
   }
+}
+::-webkit-scrollbar {
+  width: 10px;
+  background: $grey;
+}
+::-webkit-scrollbar-track {
+  box-shadow: 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: $purple;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $darkBlue;
+}
+::selection {
+  background: $purple;
+  color: $white;
 }
 @media (max-width: 768px) {
   main {
-    flex-direction: column;
-    justify-content: space-between;
+    grid-template-columns: 1fr;
   }
   section {
     margin: 10px 0;

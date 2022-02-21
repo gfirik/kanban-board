@@ -8,6 +8,8 @@ export default class Item {
     this.elements.root = Item.createRoot();
     this.elements.input = this.elements.root.querySelector(".item-input");
     this.elements.titleInput = this.elements.root.querySelector(".item-title");
+    this.elements.deleteButton =
+      this.elements.root.querySelector(".delete-item");
     this.elements.root.dataset.id = id;
     this.elements.input.textContent = content;
     this.content = content;
@@ -36,14 +38,11 @@ export default class Item {
     };
     this.elements.input.addEventListener("blur", onBlurContent);
     this.elements.titleInput.addEventListener("blur", onBlurTitle);
-    this.elements.root.addEventListener("dblclick", () => {
-      const check = confirm("Delete Item?");
-      if (check) {
-        KanbanAPI.deleteItem(id);
-        this.elements.input.removeEventListener("blur", onBlurContent);
-        this.elements.titleInput.removeEventListener("blur", onBlurTitle);
-        this.elements.root.parentElement.removeChild(this.elements.root);
-      }
+    this.elements.deleteButton.addEventListener("click", () => {
+      KanbanAPI.deleteItem(id);
+      this.elements.input.removeEventListener("blur", onBlurContent);
+      this.elements.titleInput.removeEventListener("blur", onBlurTitle);
+      this.elements.root.parentElement.removeChild(this.elements.root);
     });
     this.elements.root.addEventListener("dragstart", (event) => {
       event.dataTransfer.setData("text/plain", id);
@@ -54,18 +53,23 @@ export default class Item {
     this.elements.titleInput.addEventListener("drop", (event) => {
       event.preventDefault();
     });
-    this.elements.input.addEventListener("onClick", () => {
-      this.elements.input.textContent = "";
-    });
   }
   static createRoot() {
     const range = document.createRange();
     range.selectNode(document.body);
     return range.createContextualFragment(`
         <div class="item" draggable="true">
+          <div class="item-header">
             <h5 contenteditable class="item-title"></h5>
-            <div contenteditable class="item-input">Do something useful!</div>
-            <div class="dropzone"></div>
+            <button class="delete-item" type="button"><i class="fa fa-trash"></i></button>
+          </div>  
+          <div 
+            contenteditable 
+            class="item-input" 
+            placeholder="Task here..."
+            oninput="if(this.innerHTML.trim()==='<br>')this.innerHTML=''
+          ></div>
+          <div class="dropzone"></div>
         </div>
     `).children[0];
   }

@@ -4,20 +4,35 @@ body {
   padding: 0;
   font-size: 16px;
   font-weight: 400;
-  line-height: 1.5;
   font-family: "Baloo Tammudu 2", cursive;
-  color: #333;
+  color: #fff;
 }
 
 body {
   width: 100%;
-  background: #e7ecec;
+  background: #111215;
+}
+
+nav {
+  width: 100%;
+  height: 60px;
+  background: #49494f;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fafafa;
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   padding: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -27,8 +42,10 @@ section {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background: #dce9e9;
+  background: #49494f;
   padding: 30px;
+  border-radius: 10px;
+  width: 350px;
 }
 
 section:not(:last-child) {
@@ -46,18 +63,75 @@ h2 {
 }
 
 .item {
-  border: 1px solid #333;
   margin-bottom: 20px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  line-height: 1.5;
   border-radius: 10px;
-  background: white;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1)));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+.item:hover {
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.item-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 10px;
+}
+
+.item-header:hover {
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 .item-title {
+  -webkit-box-flex: 5;
+      -ms-flex: 5;
+          flex: 5;
   padding: 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-size: 24px;
+  color: #fafafa;
   font-weight: 700;
+}
+
+.item-title:focus {
+  outline: none;
+}
+
+.delete-item {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.delete-item i {
+  color: #777cb2;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  font-size: 32px;
+}
+
+.delete-item:hover i {
+  color: #242c4f;
 }
 
 .item-input {
@@ -65,13 +139,18 @@ h2 {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
-  height: 100%;
+  font-size: 18px;
+  color: #fafafa;
+  margin-top: 10px;
+}
+
+.item-input:focus {
+  outline: none;
 }
 
 .dropzone {
   height: 20px;
+  border-radius: 5px 5px 0 0;
   -webkit-transition: background 0.2s, height 0.2s;
   transition: background 0.2s, height 0.2s;
 }
@@ -81,11 +160,12 @@ h2 {
   background: rgba(10, 10, 10, 0.25);
 }
 
-button {
+button:not(.delete-item) {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  background: #dce9e9;
+  height: 40px;
+  font-size: 18px;
+  padding-top: 8px;
+  background: #777cb2;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -93,20 +173,46 @@ button {
   transition: all 0.2s;
 }
 
-button:hover {
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+button:not(.delete-item):hover {
+  background: #242c4f;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #49494f;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: 0 0 5px grey;
+          box-shadow: 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #777cb2;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242c4f;
+}
+
+::-moz-selection {
+  background: #777cb2;
+  color: #fafafa;
+}
+
+::selection {
+  background: #777cb2;
+  color: #fafafa;
 }
 
 @media (max-width: 768px) {
   main {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
   }
   section {
     margin: 10px 0;

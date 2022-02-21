@@ -14,7 +14,7 @@ export default class Column {
 
     this.elements.items.appendChild(topDropZone);
     this.elements.addItem.addEventListener("click", () => {
-      const newItem = KanbanAPI.addItem(id, "제목", "내용");
+      const newItem = KanbanAPI.addItem(id, "Title", "Content here...");
       this.renderItem(newItem);
     });
     KanbanAPI.getItems(id).forEach((item) => {
@@ -28,7 +28,7 @@ export default class Column {
         <section class="column">
             <h2 class="column-title"></h2>
             <div class="items"></div>
-            <button class="add-item" type="button">새 카드 만들기</button>
+            <button class="add-item" type="button">Add</button>
         </section>
     `).children[0];
   }
