@@ -36,6 +36,16 @@ export default class Item {
         content: this.content,
       });
     };
+    this.elements.input.addEventListener("focus", () => {
+      if (this.elements.input.textContent === "Content here...") {
+        this.elements.input.textContent = "";
+      }
+    });
+    this.elements.titleInput.addEventListener("focus", () => {
+      if (this.elements.titleInput.textContent === "Title") {
+        this.elements.titleInput.textContent = "";
+      }
+    });
     this.elements.input.addEventListener("blur", onBlurContent);
     this.elements.titleInput.addEventListener("blur", onBlurTitle);
     this.elements.deleteButton.addEventListener("click", () => {
